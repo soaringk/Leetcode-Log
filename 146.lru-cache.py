@@ -68,21 +68,25 @@ class LRUCache:
 
         self.addRecent(key, value)
 
+    # 将某个 key 提升为最近使用的
     def makeRecent(self, key):
         node = self.hash_map.get(key)
         self.cache.remove(node)
         self.cache.addLast(node)
 
+    # 添加最近使用的元素
     def addRecent(self, key, val):
         node = Node(key, val)
         self.cache.addLast(node)
         self.hash_map[key] = node
 
+    # 删除某一个 key
     def deleteKey(self, key):
         node = self.hash_map.get(key)
         self.cache.remove(node)
         self.hash_map.pop(key)
 
+    # 删除最久未使用的元素
     def removeLeastRecent(self):
         node = self.cache.removeFirst()
         deleted_key = node.key
