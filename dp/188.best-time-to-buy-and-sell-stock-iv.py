@@ -4,7 +4,8 @@
 # [188] Best Time to Buy and Sell Stock IV
 #
 # 状态机
-# from typing import List
+# 「状态」有三个，第一个是天数，第二个是当天允许交易的最大次数，第三个是当前的持有状态（即之前说的 rest 的状态，我们不妨用 1 表示持有，0 表示没有持有）
+from typing import List
 
 
 # @lc code=start
