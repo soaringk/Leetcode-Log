@@ -17,8 +17,8 @@ class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         """
         描述：给该函数输入三个参数root，p，q，它会返回一个节点。
-        情况 1，如果p和q都在以root为根的树中，函数返回的即使p和q的最近公共祖先节点。
-        情况 2，那如果p和q都不在以root为根的树中怎么办呢？函数理所当然地返回null呗。
+        情况 1，当 left 和 right 同时不为空，说明 p,q 分列在 root 的左右子树，因此 root 为最近公共祖先，返回 root
+        情况 2，当 left 和 right 同时为空，说明 root 的左右子树都不包括 p,q 节点，返回空
         情况 3，那如果p和q只有一个存在于root为根的树中呢？函数就会返回那个节点。
         """
         def traverse(root, p, q):
