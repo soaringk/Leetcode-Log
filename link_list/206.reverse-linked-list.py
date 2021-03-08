@@ -13,13 +13,13 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-def reverseList(self, head: ListNode) -> ListNode:
-    if head == None or head.next == None:
-        return head
-    last = self.reverseList(head.next)
-    head.next.next = head
-    head.next = None
-    return last
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head == None or head.next == None:
+            return head
+        last = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return last
 
     def reverseListIterate(self, head: ListNode) -> ListNode:
         if head == None or head.next == None:
