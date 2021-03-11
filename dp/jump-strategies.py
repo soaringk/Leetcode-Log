@@ -10,6 +10,7 @@ def countChoice(n, d_mine, m_tele):
     dp[1] = 1
     for i in range(2, n + 1):
         if i in d_mine:
+            # 等价于 dp[i] = 0
             continue
 
         # choice from jump
