@@ -15,6 +15,19 @@
 #         self.right = right
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        stack = []
+        while root or stack: # 还有节点，栈不为空
+            while root:
+                stack.append(root)
+                root = root.left
+
+            root = stack.pop()
+            res.append(root.val)
+            root = root.right
+        return res
+
+    def inorderTraversalRecursive(self, root: TreeNode) -> List[int]:
         l = []
 
         def traverse(root, l):
