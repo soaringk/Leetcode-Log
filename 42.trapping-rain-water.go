@@ -1,5 +1,7 @@
 package leetcode
 
+// 从列的角度计数，每一列的雨水量 = min(左边最高，右边最高) - 当前高度
+// 这样比行的角度计数快
 func trap(height []int) int {
 	n := len(height)
 	if n == 0 {

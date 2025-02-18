@@ -2,19 +2,20 @@ package leetcode
 
 import "sort"
 
+// 排序+双指针
 func threeSum(nums []int) [][]int {
 	n := len(nums)
 	sort.Ints(nums)
 	ans := make([][]int, 0)
 
-	// 找 a
+	// 固定一个 a
 	for first := 0; first < n; first++ {
 		if first > 0 && nums[first] == nums[first-1] { // 规避重复
 			continue
 		}
 		third := n - 1 // c 在最右端
 		target := -1 * nums[first]
-		// 枚举 b
+		// 枚举 b、c，分别位于寻找范围的两侧
 		for second := first + 1; second < n; second++ {
 			if second > first+1 && nums[second] == nums[second-1] { // 规避重复
 				continue
