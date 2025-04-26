@@ -31,7 +31,7 @@ class Solution:
             # 当前操作：选 or 不选 arr[i] 元素
             # 选的前提是加入子串后不会导致已有选择重复
             chs = set(list(arr[i]))
-            if len(charset.intersection(chs)) == 0:
+            if charset.intersection(chs) == set():
                 dfs(i + 1, charset.union(chs))
             dfs(i + 1, charset)
 
