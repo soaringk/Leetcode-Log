@@ -6,7 +6,8 @@
 
 # @lc code=start
 class Solution:
-    # 最小化最大值 就是 二分答案
+    # 「最小化最大值」就是二分答案的代名词。我们猜测一个上界 limit，即要求操作后所有元素均不超过 limit。
+    # 由于 limit 越大越能够满足，越小越无法满足，有单调性，可以二分答案。
     def minimizeArrayValue(self, nums: List[int]) -> int:
         def check(limit: int) -> bool:
             extra = 0
