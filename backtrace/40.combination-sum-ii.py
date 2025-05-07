@@ -11,21 +11,22 @@ class Solution:
         candidates.sort()
         ans = []
         path = []
-        used = [False for _ in range(len(candidates))]
+        # 其实是不必要的，因为题干要求返回唯一集合，所以如果某元素与左边元素相等，说明该搜索分支重复，直接跳过，完全不需要判断有没有用过
+        # used = [False for _ in range(len(candidates))]
         def backtrack(start, target):
             if target == 0:
                 ans.append(path[:])
                 return
             if target < 0 or len(path) == len(candidates):
                 return
-            for i, cand in enumerate(candidates[start:]):
-                if i > 0 and candidates[start+i] == candidates[start+i-1] and not used[start+i-1]:
+            for i in range(start, len(candidates)):
+                if i > start and candidates[i] == candidates[i-1]: # and not used[i-1]:
                     continue
-                path.append(cand)
-                used[start+i] = True
-                backtrack(start+i+1, target-cand)
+                path.append(candidates[i])
+                # used[i] = True
+                backtrack(i+1, target-candidates[i])
                 path.pop()
-                used[start+i] = False
+                # used[i] = False
         backtrack(0, target)
         return ans
 # @lc code=end
