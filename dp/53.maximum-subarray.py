@@ -8,6 +8,7 @@
 # @lc code=start
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
+        # 定义 f[i] 表示以 nums[i] 结尾的最大子数组和。
         if not nums: return 0
         dp = [-1 for _ in nums]
         dp[0] = nums[0]
