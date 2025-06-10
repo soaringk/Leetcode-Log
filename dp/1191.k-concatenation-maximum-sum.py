@@ -17,15 +17,14 @@ class Solution:
         return ans % 1_000_000_007
 
 
-    # 右侧的最大前缀和减去左边最小前缀和
+    # 空间优化的 dp
     def maxSubArray(self, nums: List[int]) -> int:
-        ans = 0 # 本题允许子数组为空，ans 可以初始化成 0
-        min_accu = accu = 0
+        ans = dp = 0  # 本题允许子数组为空，ans 可以初始化成 0
         for x in nums:
-            accu += x # 当前前缀和
-            ans = max(ans, accu - min_accu)
-            min_accu = min(min_accu, accu)
+            dp = max(dp, 0) + x
+            ans = max(ans, dp)
         return ans
+
 
 # @lc code=end
 Solution().kConcatenationMaxSum([-1,-2],7)
