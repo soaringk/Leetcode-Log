@@ -5,31 +5,28 @@
 #
 from typing import List
 
+
 # @lc code=start
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
-        target = sum(nums)
-        if target % 2 != 0:
+        # 求和必须能被 2 整除才能等分
+        s = sum(nums)
+        if s % 2:
             return False
-        # 给一个可装载重量为 sum / 2 的背包和 N 个物品，每个物品的重量为 nums[i]。
+
+        target = s // 2
+        # 定义 f[i+1][j] 是 target = j 时，前 i 个元素是否能满足条件的矩阵
+        # f[i+1][j] = f[i][j-nums[i]] or f[i][j] if j > x
         n = len(nums)
-        target //= 2
-
-        dp = [[False for _ in range(target + 1)] for _ in range(n + 1)]
-        for i in range(n):
-            dp[i][0] = True
-
-        for i in range(1, n + 1):
-            for j in range(1, target + 1):
-                if j - nums[i - 1] < 0:
-                    dp[i][j] = dp[i - 1][j]  # 不把物品 i 装进背包
+        dp = [[False] * (target + 1) for _ in range(n + 1)]
+        dp[0][0] = True
+        for i, x in enumerate(nums):
+            for j in range(target + 1):
+                if j >= x:
+                    dp[i + 1][j] = dp[i][j - x] or dp[i][j]
                 else:
-                    dp[i][j] = dp[i - 1][j] or \
-                        dp[i - 1][j - nums[i - 1]]
-
+                    dp[i + 1][j] = dp[i][j]
         return dp[n][target]
 
 
 # @lc code=end
-s = Solution()
-s.canPartition([1,2,5])
