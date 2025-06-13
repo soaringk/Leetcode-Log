@@ -6,7 +6,7 @@
 '''
 1.找到原链表的中点 876
 2.将原链表的右半端反转 206
-3.将原链表的两端合并
+3.将原链表的两端合并 21
 '''
 
 # @lc code=start
@@ -49,18 +49,15 @@ class Solution:
         return pre
 
     def mergeList(self, l1, l2):
-        l1_tmp = None
-        l2_tmp = None
-
         while l1 and l2:
-            l1_tmp = l1.next
-            l2_tmp = l2.next
+            nxt1 = l1.next
+            nxt2 = l2.next
 
             l1.next = l2
-            l2.next = l1_tmp
+            l2.next = nxt1
 
-            l1 = l1_tmp
-            l2 = l2_tmp
+            l1 = nxt1
+            l2 = nxt2
 
 
 # @lc code=end
