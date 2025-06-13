@@ -24,10 +24,10 @@ type DLinkedNode struct {
 	prev, next *DLinkedNode
 }
 
-// Constructor TODO
+// Constructor 初始化
 func Constructor(capacity int) LRUCache {
-	head := &DLinkedNode{}
-	tail := &DLinkedNode{}
+	head := &DLinkedNode{} // dummy head
+	tail := &DLinkedNode{} // dummy tail
 	head.next = tail
 	tail.prev = head
 	return LRUCache{
@@ -53,8 +53,11 @@ func (this *LRUCache) Get(key int) int {
 
 // Put 加入一个数据
 // 判断key是否存在
-// 1. 不存在，使用 key 和 value 创建一个新的节点，在双向链表的头部添加该节点，并将 key 和该节点添加进哈希表中。然后判断双向链表的节点数是否超出容量，如果超出容量，则删除双向链表的尾部节点，并删除哈希表中对应的项；
-// 2. 存在，则通过哈希表找到该节点在双向链表中的位置，并将其移动到链表的头部，最后返回该节点的值。
+//  1. 不存在，
+//     a. 使用 key 和 value 创建一个新的节点，在双向链表的头部添加该节点，并将 key 和该节点添加进哈希表中。
+//     b. 然后判断双向链表的节点数是否超出容量，如果超出容量，则删除双向链表的尾部节点，
+//     c. 并删除哈希表中对应的项；
+//  2. 存在，则通过哈希表找到该节点在双向链表中的位置，并将其移动到链表的头部，最后返回该节点的值。
 func (this *LRUCache) Put(key int, value int) {
 	if node, ok := this.index[key]; ok {
 		node.value = value
@@ -72,7 +75,7 @@ func (this *LRUCache) Put(key int, value int) {
 	}
 }
 
-// 在双向链表中删除内容并添加到队首
+// 在双向链表中移动某个内容到队首，等价于先删再加
 func (this *LRUCache) moveToHead(node *DLinkedNode) {
 	this.removeNode(node)
 	this.addToHead(node)
@@ -86,11 +89,13 @@ func (this *LRUCache) addToHead(node *DLinkedNode) {
 	this.head.next = node
 }
 
+// 删除内容，修改前后变量的指针，跳过自身即可
 func (this *LRUCache) removeNode(node *DLinkedNode) {
 	node.prev.next = node.next
 	node.next.prev = node.prev
 }
 
+// 拿到队尾的元素，然后删除
 func (this *LRUCache) removeTail() *DLinkedNode {
 	tmp := this.tail.prev
 	this.removeNode(tmp)
