@@ -60,7 +60,7 @@ dp[当前状态] = f(dp[前一个状态1], dp[前一个状态2], ...)
 ## 最大子数组和
 
 方案一、传统 dp
-定义：dp[i] 为以 i 结尾的元素的【题目求解答案】。
+定义：dp[i] 为以 i **结尾**的元素的【题目求解答案】。
 转移：dp[i] = max(dp[i - 1] + nums[i], nums[i], 0)
 注意，由于定义，dp[n] 不一定是答案，还需要找
 
@@ -77,6 +77,9 @@ nums[left:right] = s[right+1]−s[left]
 
 ## 网格图 DP
 
+定义：dp[i+1][j+1] 为位置在 i, j 的【题目求解答案】。(i+1避免偏移计算)
+转移：dp[i+1][j+1] = 所有移动方向的 max/sum/min
+
 ```python
 def minPathSum(self, grid: List[List[int]]) -> int:
    m, n = len(grid), len(grid[0])
@@ -89,6 +92,9 @@ def minPathSum(self, grid: List[List[int]]) -> int:
 ```
 
 ## 0-1背包
+
+定义：dp[i][j] 为 nums[0...i] 选出恰好和为 j 的答案。
+转移：dp[i][j] = （选或不选两种）max(dp[i-1][j-nums[i]], dp[i-1][j])
 
 ```python
    def canPartition(self, nums: List[int], target: int) -> bool:
