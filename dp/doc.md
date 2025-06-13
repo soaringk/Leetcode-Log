@@ -110,4 +110,12 @@ def minPathSum(self, grid: List[List[int]]) -> int:
                else:
                   dp[i + 1][j] = dp[i][j]
       return dp[n][target]
-```
+``
+
+## 状态机 dp
+
+定义：dp[i][0] 为第 i 天 未持有物品的利润；dp[i][1] 为第 i 天 持有物品的利润
+转移：dp[i+1][0] = （卖或不卖两种）max(dp[i][1] + prices[i], dp[i][0])
+     dp[i+1][1] = （卖或不卖两种）max(dp[i][0] - prices[i], dp[i][1])
+边界：dp[0][0] = 0 第 0 天未持有股票，利润零
+     dp[0][1] = -inf 第 0 天不可能持有股票，强制为负无穷
