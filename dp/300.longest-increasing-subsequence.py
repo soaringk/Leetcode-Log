@@ -7,6 +7,8 @@
 # @lc code=start
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
+        # 定义 f[i] 以 nums[i] 结尾的 LIS
+        # f[i] = max(f[j]) + 1, for j in range(i)
         dp = [1 for _ in range(len(nums))]
         for i in range(len(dp)):
             for j in range(i):
