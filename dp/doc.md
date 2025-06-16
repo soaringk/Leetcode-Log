@@ -110,7 +110,7 @@ def minPathSum(self, grid: List[List[int]]) -> int:
                else:
                   dp[i + 1][j] = dp[i][j]
       return dp[n][target]
-``
+```
 
 ## 状态机 dp
 
@@ -119,3 +119,13 @@ def minPathSum(self, grid: List[List[int]]) -> int:
      dp[i+1][1] = （卖或不卖两种）max(dp[i][0] - prices[i], dp[i][1])
 边界：dp[0][0] = 0 第 0 天未持有股票，利润零
      dp[0][1] = -inf 第 0 天不可能持有股票，强制为负无穷
+
+## 最长公共子序列 LCS
+
+定义：dp[i][j] 为字符串 A 的前 i 个字符和字符串 B 的前 j 个字符的最长公共子序列长度。
+转移：dp[i][j] = dp[i-1][j-1] + 1 if A[i-1] == B[j-1] else max(dp[i-1][j], dp[i][j-1])
+
+## 最长递增子序列 LIS
+
+定义：dp[i] 为以 i 结尾的最长递增子序列长度。
+转移：dp[i] = max(dp[j] + 1) for j in range(i) if nums[j] < nums[i]
