@@ -112,6 +112,11 @@ def minPathSum(self, grid: List[List[int]]) -> int:
       return dp[n][target]
 ```
 
+## 完全背包
+
+定义：dp[i][j] 为 nums[0...i] 选出恰好和为 j 的答案。
+转移：dp[i][j] = （选或不选两种）max(dp[i][j-nums[i]], dp[i-1][j]) # dp[i][j-nums[i]] 体现重复选
+
 ## 状态机 dp
 
 定义：dp[i][0] 为第 i 天 未持有物品的利润；dp[i][1] 为第 i 天 持有物品的利润
