@@ -7,6 +7,19 @@
 
 # @lc code=start
 class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        # 滑动窗口
+        charset = set()
+        left = 0
+        ans = 0
+        for right, x in enumerate(s):
+            while x in charset:
+                charset.remove(s[left])
+                left += 1
+            charset.add(x)
+            ans = max(ans, right - left + 1)
+        return ans
+    
     def myLengthOfLongestSubstring(self, s: str) -> int:
         ls = ''
         l = 0
@@ -20,7 +33,7 @@ class Solution:
             l = len(ls)
         return l
 
-    def lengthOfLongestSubstring(self, s: str) -> int:
+    def otherlengthOfLongestSubstring(self, s: str) -> int:
         window = {}
 
         l = r = 0
