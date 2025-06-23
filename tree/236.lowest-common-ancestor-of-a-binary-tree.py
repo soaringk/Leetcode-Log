@@ -21,24 +21,19 @@ class Solution:
         情况 2，当 left 和 right 同时为空，说明 root 的左右子树都不包括 p,q 节点，返回空
         情况 3，那如果p和q只有一个存在于root为根的树中呢？函数就会返回那个节点。
         """
-        def traverse(root, p, q):
-            # base case
-            if root in (None, p, q):
-                return root
+        # base case
+        if root in (None, p, q):
+            return root
 
-            left = traverse(root.left, p, q)
-            right = traverse(root.right, p, q)
+        left = self.lowestCommonAncestor(root.left, p, q)
+        right = self.lowestCommonAncestor(root.right, p, q)
 
-            # 1.
-            if left and right:
-                return root
-            # 2.
-            if left == None and right == None:
-                return None
-            # 3.
-            return left if right == None else right
-
-        node = traverse(root, p, q)
-
-        return node
+        # 1.
+        if left and right:
+            return root
+        # 2.
+        if left == None and right == None:
+            return None
+        # 3.
+        return left if right == None else right
 # @lc code=end
