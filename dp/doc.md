@@ -125,12 +125,25 @@ def minPathSum(self, grid: List[List[int]]) -> int:
 边界：dp[0][0] = 0 第 0 天未持有股票，利润零
      dp[0][1] = -inf 第 0 天不可能持有股票，强制为负无穷
 
-## 最长公共子序列 LCS
+## 线性 dp
+
+### 最长公共子序列 LCS
 
 定义：dp[i][j] 为字符串 A 的前 i 个字符和字符串 B 的前 j 个字符的最长公共子序列长度。
 转移：dp[i][j] = dp[i-1][j-1] + 1 if A[i-1] == B[j-1] else max(dp[i-1][j], dp[i][j-1])
 
-## 最长递增子序列 LIS
+### 最长递增子序列 LIS
 
 定义：dp[i] 为以 i 结尾的最长递增子序列长度。
 转移：dp[i] = max(dp[j] + 1) for j in range(i) if nums[j] < nums[i]
+
+## 区间 dp
+
+### 最长回文子序列
+
+思路一、原字符串 vs 翻转字符串，求 LCS
+
+思路二、
+定义：dp[i][j] 为字符串 A 的 i...j 之间字符的最长回文子序列长度。
+转移：dp[i][j] = dp[i+1][j-1] + 2 if A[i] == A[j] else max(dp[i+1][j], dp[i][j-1])
+注意：dp[i] 从 dp[i+1] 转移而来，因此需要倒序枚举；dp[j] 从 dp[j-1] 转移而来，因此需要正序枚举
