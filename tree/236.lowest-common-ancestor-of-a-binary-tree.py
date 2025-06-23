@@ -23,24 +23,20 @@ class Solution:
         """
         def traverse(root, p, q):
             # base case
-            if root == None: return
+            if root == None: return None
             if root == p or root == q: return root
 
             left = traverse(root.left, p, q)
             right = traverse(root.right, p, q)
 
             # 1.
-            if left != None and right != None:
+            if left and right:
                 return root
             # 2.
             if left == None and right == None:
                 return None
             # 3.
-            if left == None and right != None:
-                return right
-            elif right == None and left != None:
-                return left
-            # return left if right == None else right
+            return left if right == None else right
 
         node = traverse(root, p, q)
 
