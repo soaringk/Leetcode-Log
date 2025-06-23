@@ -17,8 +17,8 @@ class Solution:
         p_b = headB
 
         while p_a != p_b:
-            p_a = headB if p_a is None else p_a.next
-            p_b = headA if p_b is None else p_b.next
+            p_a = p_a.next if p_a else headB
+            p_b = p_b.next if p_b else headA
 
         return p_a
 
