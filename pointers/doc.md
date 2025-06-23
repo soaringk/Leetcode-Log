@@ -6,7 +6,7 @@
 
 # 模版
 
-#207 有序的两数之和
+#167 有序的两数之和
 ```python
 def twoSum(self, numbers: List[int], target: int) -> List[int]:
     left = 0
