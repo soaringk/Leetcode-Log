@@ -23,8 +23,8 @@ class Solution:
         """
         def traverse(root, p, q):
             # base case
-            if root == None: return None
-            if root == p or root == q: return root
+            if root in (None, p, q):
+                return root
 
             left = traverse(root.left, p, q)
             right = traverse(root.right, p, q)
