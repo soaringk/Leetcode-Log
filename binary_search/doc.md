@@ -19,6 +19,7 @@
 ### [] 闭区间
 
 ```
+left, right = 0, len(nums) - 1
 while left <= right: # 结束条件是 right 在 left 的左边
     left = mid + 1
     right = mid - 1
